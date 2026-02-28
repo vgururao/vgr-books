@@ -1,0 +1,131 @@
+# Book Production Profile
+
+Synthesized from our conversations about book production workflows, tooling, and services.
+
+Source chats:
+- [Book Production Management Resources](https://claude.ai/chat/e21d0951-b568-4843-97b1-980fadf6392b)
+- [Professional book layout automation tools](https://claude.ai/chat/a63a90cc-624c-49b4-a720-4af9feabbc1f)
+- [Evaluating Quarto for publishing infrastructure](https://claude.ai/chat/0fed9795-8b92-439c-ba1f-5494e505a5c5)
+- [Pandoc for InDesign workflows](https://claude.ai/chat/710f68b1-15a7-431f-9259-cafc93292941)
+- [Professional book proofreading services](https://claude.ai/chat/65a5214b-b391-40b5-9425-10a6caa5bd8e)
+- [Drafting a Statement of Work for Publishing Services](https://claude.ai/chat/cb8682b0-fdbd-48d1-a60e-d07a75af376b)
+- [Book Sizing in the British Imperial System](https://claude.ai/chat/a399acbe-77c7-4a28-ad5b-154d11caf119)
+- [Knuth-McIlroy Literate Programming Debate](https://claude.ai/chat/19d7622c-cdf9-4b50-a30c-d27887c957b3)
+
+---
+
+## 1. What type of books?
+
+Two distinct production tracks within the same series infrastructure:
+
+**Track 1: Nonfiction** — content-rich books with figures, tables, and special typographic style requirements. The "special styles" category includes embedded social media content (e.g., tweets rendered with distinct visual treatment), which implies the typesetting system needs to handle custom block-level styles beyond standard headings/blockquotes. Figures and tables mean the pipeline must support image placement with captions, cross-references, and table formatting that survives both paginated PDF and reflowable EPUB output — a nontrivial constraint, since tables that look good in print often break badly in ebook readers.
+
+**Track 2: Fiction** — with two specific typographic demands. First, occasional non-Latin script: Chinese and Thai, which require proper font fallback chains, Unicode support, and potentially different line-spacing/word-breaking rules (Thai has no spaces between words; Chinese has no word boundaries in the Western sense). Second, special typography styles such as faux computer output (monospaced, terminal-aesthetic text blocks within prose), which means the template system needs inline and block-level style variants beyond italics/bold.
+
+Both tracks share the same underlying infrastructure: a **book series** with at minimum three titles sharing consistent internal design. The production management research covered workflows at Bloomsbury, Allen & Unwin, Penguin Random House, and Faber handling 120+ titles/year — this is infrastructure for ongoing series production, not one-off projects. The sizing research into DIN A5, B5, and quarto formats suggests physical print dimensions are being actively evaluated.
+
+**Implications for the pipeline:** the nonfiction track pushes the Typst/LaTeX decision harder than pure prose would. Typst's figure and table handling is maturing but less battle-tested than LaTeX for complex layouts. The multilingual fiction track requires LuaLaTeX or Typst with proper OpenType font support and Unicode-aware line-breaking — both can handle this, but font configuration becomes a first-class concern rather than an afterthought. The special block styles (tweets, terminal output) need to be defined as reusable components in the series template.
+
+## 2. Input format?
+
+**Markdown.** This was settled decisively in the layout automation tools conversation. The recommended architecture is markdown as the single source of truth, with each book organized as a directory of chapter files:
+
+```
+book-01/
+├── metadata.yaml
+├── chapters/
+│   ├── 01-chapter.md
+│   └── 02-chapter.md
+└── images/
+```
+
+The Pandoc evaluation (from the InDesign workflow chat) established markdown as the natural format for programmatic pipelines — semantic structure without layout opinions, cleanly version-controllable, and universally convertible. The Quarto evaluation reinforced this: `.qmd` files are just markdown with extras, and the whole publishing toolchain assumes markdown-first authoring. YAML metadata files handle per-book configuration (title, author, ISBN, trim size, etc.) separately from content.
+
+The InDesign background means Word docs and other GUI-native formats are understood but explicitly rejected for this pipeline. The whole point is to escape manual workflows.
+
+The nonfiction track's figures and tables require markdown image syntax with captions and either pipe tables or grid tables (Pandoc's extended table syntax). The fiction track's multilingual content (Chinese, Thai) stays in-line as Unicode within the markdown source — no special encoding needed at the authoring layer, though the metadata YAML should declare language regions for proper font selection downstream. Special block styles (tweets, faux terminal output) are best handled as fenced divs with custom classes (Pandoc's `:::` syntax), e.g., `::: {.tweet}` or `::: {.terminal}`, which the Typst/LaTeX template then renders with the appropriate visual treatment.
+
+## 3. Output format?
+
+**Two primary outputs, explicitly stated in the layout tools conversation:**
+
+1. **Print-quality PDFs** for book printers (offset and digital). This means proper trim marks, bleed, embedded fonts, CMYK-ready output — not screen-resolution PDFs.
+2. **EPUB3** for sale and sharing — compliant ebook files for distribution through standard channels.
+
+The dual-output requirement is what drove the entire tooling investigation. GUI tools like Vellum and Atticus were evaluated and rejected precisely because they can't be scripted for programmatic dual-format production. The pipeline produces both formats from the same markdown source in a single build command.
+
+Secondary/evaluated formats: InDesign ICML (via Pandoc, for cases requiring bespoke layout), HTML for web, DOCX for collaborators, and JATS for academic submission were all discussed in the Quarto evaluation as possible but not primary targets.
+
+The nonfiction track's figures and tables stress the EPUB output harder than the PDF — reflowable layout needs responsive table handling and properly sized/captioned images. The fiction track's multilingual content requires embedded font subsets in both PDF (for Chinese/Thai glyphs) and EPUB (where reader support for CJK and Thai fonts varies by device). Both outputs need to handle the custom block styles (tweets, terminal output) gracefully, though the visual rendering will necessarily differ between paginated and reflowable contexts.
+
+## 4. Key workflow stages?
+
+Reconstructed from the full arc of conversations:
+
+**Writing and drafting** — authored in markdown, organized as chapter files per book, with YAML frontmatter for metadata. Version-controlled in git from day one. The literate programming research (Knuth-McIlroy) and Quarto evaluation suggest interest in computational/reproducible document workflows, though the primary use case is prose-forward.
+
+**Editing and revision** — the Statement of Work conversation laid out a formal structure: copyediting, fact-checking, and collaboration with editors via tracked revisions. The SOW specified multiple approval gates and regular progress updates against milestones.
+
+**Proofreading** — treated as a distinct professional stage, post-copyedit. Extensive research into freelance proofreaders (Reedsy, EFA directory, direct outreach), with batch pricing across all three books. Budget expectation: $1–2k per book for quality work. Outreach templates were drafted for both direct and platform-based hiring.
+
+**Formatting and typesetting** — the core of the programmatic pipeline. Pandoc orchestrates the conversion; Typst (preferred) or LuaLaTeX (fallback) handles print PDF typesetting; Pandoc's native EPUB3 writer handles ebook output. A shared series template enforces consistent look and feel across all titles. The iterative design phase (tuning the Typst template against a real manuscript) was identified as the creative bottleneck; once solved, subsequent books are mechanical.
+
+**Cover design** — referenced in the SOW (design services including "cover design, page layout, and typography" with mockup approval gates) and in the production management research (Faber's production team checking jacket colors with spectrophotometers). Not yet addressed in the programmatic pipeline — covers remain a manual/creative process.
+
+**Export and publishing** — a single `make` command produces both print PDF and EPUB from source. The pipeline is CI/CD-friendly and designed for repeatability: `make book-01-pdf book-01-epub`. The production management research into printer workflows, F&Gs, PLCs, and pre-press QC suggests awareness of what happens downstream of file delivery.
+
+## 5. Collaboration needs?
+
+**Single author/producer coordinating freelance specialists.** The pattern across conversations is consistent: one person driving the project, contracting out specialized services:
+
+- Freelance proofreaders (evaluated platforms, drafted outreach, negotiated batch rates)
+- Editorial services (SOW structured for client → service provider relationship)
+- Design services (SOW included cover design, layout, with approval-gate workflow)
+
+The SOW explicitly defined a two-party structure: Client and Service Provider, with the client retaining all IP rights and the provider assigning deliverables. No evidence of co-authoring, multi-editor simultaneous workflows, or institutional publishing infrastructure.
+
+The InDesign expertise suggests the producer may also handle layout/typesetting directly rather than contracting it out — the programmatic pipeline was being built to serve this self-sufficiency.
+
+Git version control was specified for the pipeline repo, which enables future collaboration if needed ("any coding agent can pick it up in the future — you're not locked in"), but the current workflow is single-operator.
+
+## 6. Any specific tools you want to use?
+
+**Decided/preferred:**
+
+- **Pandoc** — universal converter and pipeline orchestrator. Evaluated thoroughly in its own conversation, confirmed as central infrastructure in every subsequent discussion.
+- **Typst** — preferred PDF typesetting backend. Chosen over LaTeX for saner syntax, millisecond compilation, debuggable templates, and code-native template language. The series template (`.typ` file) is the key design artifact. Must be configured with OpenType font fallback chains for CJK and Thai script support (fiction track) and custom `show` rules for special block styles — tweet embeds, terminal output, figures with captions, and complex tables (nonfiction track). Typst's `text(lang: "zh")` and `text(lang: "th")` directives handle per-span language tagging for proper line-breaking.
+- **Pandoc EPUB3 writer** — ebook output, styled via a separate CSS file.
+- **Make / shell scripts** — build automation. `Makefile` or `build.sh` drives the pipeline.
+- **Git** — version control for the entire pipeline (templates, CSS, Makefile, content).
+- **Claude Code** — recommended for the initial creative/iterative phase of template design. Tight feedback loop: write template → compile → inspect → fix → recompile.
+
+**Evaluated and kept in reserve:**
+
+- **LaTeX / LuaLaTeX** — battle-tested fallback if Typst hits edge cases. Proven in production by self-publishers. "Notoriously cursed ecosystem" but reliable. LuaLaTeX specifically is the right engine here — it handles Unicode natively and has mature CJK/Thai support via `fontspec` and `babel`/`polyglossia`, which may matter if Typst's multilingual typesetting proves insufficient for the fiction track's Chinese and Thai passages.
+- **Quarto** — cataloged as state-of-the-art for computational publishing, but critiqued as too opinionated and data-science-captured for prose-forward book production. Worth knowing, not worth adopting as primary.
+- **InDesign** — existing professional expertise. Pandoc can output ICML for InDesign import when bespoke layout is needed, but the goal is to NOT need InDesign for routine series production.
+- **Pi** — evaluated for wrapping the stable pipeline into a reusable skill for ongoing production after the initial build-out phase.
+
+**Evaluated and rejected:**
+
+- **Vellum** — mac-only GUI, not scriptable, anti-programmatic.
+- **Atticus** — cross-platform GUI, same fundamental limitation.
+- **Reedsy Book Editor** — too limited in customization.
+
+**The target pipeline architecture:**
+
+```
+NONFICTION TRACK (figures, tables, tweet blocks):
+  markdown + images → pandoc + lua filters → typst → print-quality PDF
+                    → pandoc + lua filters → EPUB3 writer → ebook
+
+FICTION TRACK (multilingual, terminal blocks):
+  markdown (with CJK/Thai Unicode) → pandoc → typst (font fallback chains) → print PDF
+                                   → pandoc → EPUB3 writer (embedded font subsets) → ebook
+
+SHARED:
+  series-template.typ  ← defines both tracks' visual identity
+  epub-style.css       ← ebook styling for both tracks
+  Makefile             ← `make book-01-pdf book-01-epub`
+  git repo             ← everything version-controlled
+```

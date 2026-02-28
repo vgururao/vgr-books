@@ -1,0 +1,302 @@
+
+:root {
+  --bg: #f8f5f1;
+  --fg: #222222;
+  --accent: #4a6fa5;
+  --accent-soft: #d7e3f6;
+  --border-soft: #e0d7c8;
+
+  /* book-nav.css overrides */
+  --nav-bg:           var(--accent-soft);
+  --nav-border:       var(--border-soft);
+  --nav-fg:           var(--accent);
+  --nav-label:        var(--fg);
+  --nav-arrow:        var(--accent);
+  --nav-hover:        #2d4f80;
+  --nav-outer-offset: 400px;
+  --nav-max-width:    760px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.site-header,
+.site-footer {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 0.5rem;
+}
+.site-header h1 {
+  font-size: 1.6rem;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+.site-header .subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+.main-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px 12px 0 0;
+  border: 1px solid var(--border-soft);
+  border-top: none;
+}
+main { margin-top: 0.5rem; }
+
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.3; }
+
+.chapter-title {
+  font-size: 1.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+p {
+  font-size: 1.02rem;
+  margin: 0 0 1rem;
+}
+
+ol.toc {
+  margin: 1rem 0 2rem;
+  padding-left: 1.4rem;
+}
+ol.toc li { margin: 0.35rem 0; }
+.chapter-meta {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 0.5rem;
+}
+.chapter-image {
+  margin: 1.5rem 0 2rem;
+  text-align: center;
+}
+.chapter-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* .chapter-nav removed — replaced by book-nav.css */
+
+.footnotes {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 2rem;
+}
+.footnotes ol {
+  padding-left: 1.4rem;
+}
+.footnotes li {
+  margin: 0.3rem 0;
+}
+
+.site-footer {
+  font-size: 0.8rem;
+  color: #777;
+  padding-bottom: 2rem;
+}
+.site-footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.previous-volumes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.volume-card {
+  border-top: 1px solid var(--border-soft);
+  padding-top: 1rem;
+}
+.volume-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.volume-cover img {
+  max-width: 140px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+.volume-copy p {
+  margin-top: 0;
+}
+@media (max-width: 600px) {
+  .volume-layout {
+    flex-direction: column;
+  }
+}
+/* Art of Gig overall layout tweaks */
+
+.aog-intro {
+  margin-bottom: 1.5rem;
+}
+
+/* TOC spacing (used in toc.html) */
+.toc {
+  padding-left: 1.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ── 3-box book card grid (index.html) ───────────────────────── */
+
+.book-box-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.book-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 1.25rem;
+  background: rgba(255,255,255,0.7);
+}
+
+.book-box-cover {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+  margin: 0 auto 1rem;
+  display: block;
+}
+
+.book-box h2 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+
+.book-box p {
+  font-size: 0.9rem;
+  color: #444;
+  flex: 1;
+  margin: 0 0 1rem;
+}
+
+.book-box-editions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  margin-top: auto;
+}
+
+.book-box-editions a {
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.book-box-editions a:hover {
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+}
+
+.edition-soon {
+  color: #999;
+  padding: 0.25rem 0;
+  font-style: italic;
+}
+
+/* titlepage (vol3_title.html) */
+.titlepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh;
+  padding: 2rem 1rem;
+}
+.titlepage h1 {
+  font-size: 2.2rem;
+  margin: 0 0 0.5rem;
+}
+.titlepage .subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  margin: 0 0 1.5rem;
+}
+.titlepage .byline {
+  font-size: 1.1rem;
+  color: var(--fg);
+  margin: 0 0 1rem;
+}
+.titlepage .edition-note {
+  font-size: 0.88rem;
+  color: #777;
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+.titlepage .copyright {
+  font-size: 0.82rem;
+  color: #999;
+  margin: 0.5rem 0 0;
+}
+
+@media (max-width: 700px) {
+  .book-box-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Mobile: ≤600px ──────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .site-header,
+  .site-footer {
+    padding: 1rem 0.75rem 0.25rem;
+  }
+
+  .site-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .main-wrapper {
+    padding: 0.75rem 0.75rem 2rem;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .chapter-title {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 0.97rem;
+  }
+
+  .chapter-image img {
+    border-radius: 4px;
+  }
+}

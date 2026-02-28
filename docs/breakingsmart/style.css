@@ -1,0 +1,370 @@
+/* Breaking Smart — style.css
+   SACRED: hand-edited file. Never auto-overwrite.
+   book-nav.css and book-nav.js are synced from online_book_builder — never hand-edit those.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --bg:           #f7f9f7;
+  --fg:           #1a2a1a;
+  --accent:       #2d6a2d;
+  --accent-soft:  #d4e8d4;
+  --accent-mid:   #4a8c4a;
+  --border-soft:  #c8dcc8;
+
+  /* book-nav.css variable overrides */
+  --nav-bg:           var(--accent-soft);
+  --nav-border:       var(--border-soft);
+  --nav-fg:           var(--accent);
+  --nav-label:        var(--fg);
+  --nav-arrow:        var(--accent-mid);
+  --nav-hover:        #1a4a1a;
+  --nav-outer-offset: 400px;
+  --nav-max-width:    760px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.75;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Site header / footer ─────────────────────────────────────────────── */
+
+.site-header,
+.site-footer {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+.site-header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.site-header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header h1 a:hover {
+  text-decoration: underline;
+}
+
+.site-header .subtitle {
+  font-size: 0.9rem;
+  color: #556655;
+  margin-top: 0.2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-style: italic;
+}
+
+.site-footer {
+  font-size: 0.8rem;
+  color: #667766;
+  padding-bottom: 2.5rem;
+}
+
+.site-footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ── Main content wrapper ─────────────────────────────────────────────── */
+
+.main-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 3rem;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 12px 12px 0 0;
+  border: 1px solid var(--border-soft);
+  border-top: none;
+}
+
+main { margin-top: 0.25rem; }
+
+/* ── Typography ───────────────────────────────────────────────────────── */
+
+h1, h2, h3, h4 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--fg);
+}
+
+.chapter-title {
+  font-size: 1.9rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--fg);
+}
+
+p {
+  font-size: 1.02rem;
+  margin: 0 0 1.1rem;
+}
+
+blockquote {
+  border-left: 3px solid var(--accent-soft);
+  margin: 1.25rem 0;
+  padding: 0.5rem 1rem;
+  color: #334433;
+  font-style: italic;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 2rem 0;
+}
+
+/* ── Footnotes ───────────────────────────────────────────────────────── */
+
+.footnotes,
+div.footnotes {
+  font-size: 0.85rem;
+  color: #556655;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 1rem;
+}
+
+.footnotes ol,
+div.footnotes ol {
+  padding-left: 1.4rem;
+}
+
+.footnotes li,
+div.footnotes li {
+  margin: 0.4rem 0;
+}
+
+/* ── TOC pages ───────────────────────────────────────────────────────── */
+
+.toc-intro {
+  font-size: 0.97rem;
+  color: #445544;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+ol.toc {
+  margin: 0.5rem 0 2rem;
+  padding-left: 1.6rem;
+  counter-reset: toc-counter;
+}
+
+ol.toc li {
+  margin: 0.45rem 0;
+  font-size: 1rem;
+}
+
+ol.toc a {
+  color: var(--accent);
+}
+
+ol.toc a:hover {
+  text-decoration: underline;
+}
+
+/* ── Cover / splash page ─────────────────────────────────────────────── */
+
+.cover-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+}
+
+.cover-image {
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1.75rem;
+}
+
+.cover-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  color: var(--fg);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.cover-subtitle {
+  font-size: 1.1rem;
+  color: #445544;
+  margin: 0 0 0.5rem;
+  font-style: italic;
+}
+
+.cover-byline {
+  font-size: 0.95rem;
+  color: #667766;
+  margin: 0 0 2rem;
+}
+
+.cover-buy {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.cover-buy:hover {
+  background: var(--accent-mid);
+  text-decoration: none;
+}
+
+.cover-read {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.cover-read:hover {
+  background: #b8d4b8;
+  text-decoration: none;
+}
+
+/* ── Language switcher (inline in book-nav) ──────────────────────────── */
+
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+.lang-flag {
+  font-size: 1.2rem;
+  text-decoration: none;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+  line-height: 1;
+}
+
+.lang-flag:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.lang-flag.lang-active {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lang-flag-disabled {
+  font-size: 1.2rem;
+  opacity: 0.2;
+  cursor: default;
+  line-height: 1;
+}
+
+/* ── Chapter images ──────────────────────────────────────────────────── */
+
+.chapter-image,
+figure.chapter-image {
+  margin: 1.5rem 0 2rem;
+  text-align: center;
+}
+
+.chapter-image img,
+figure.chapter-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.09);
+}
+
+/* WordPress figures */
+figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  font-size: 0.85rem;
+  color: #667766;
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .site-header,
+  .site-footer {
+    padding: 1rem 0.75rem 0.25rem;
+  }
+
+  .site-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .main-wrapper {
+    padding: 0.75rem 0.9rem 2rem;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .chapter-title {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.98rem;
+  }
+
+  .cover-title {
+    font-size: 1.6rem;
+  }
+
+  .cover-image {
+    max-width: 180px;
+  }
+
+  .cover-languages {
+    gap: 1rem;
+  }
+}
