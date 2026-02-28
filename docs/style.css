@@ -81,6 +81,34 @@ a:hover { color: var(--link-hover); }
   max-width: 640px;
 }
 
+/* ── Series section ──────────────────────────────── */
+
+.book-series {
+  margin-bottom: 3rem;
+}
+
+.series-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.series-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.series-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.standalone-grid {
+  margin-top: 1rem;
+}
+
 /* ── Book Grid ───────────────────────────────────── */
 
 .book-grid {
@@ -120,12 +148,13 @@ a:hover { color: var(--link-hover); }
   flex: 1;
 }
 
-.book-series {
-  font-size: 0.78rem;
+.book-series-label {
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
   font-family: system-ui, sans-serif;
+  margin-bottom: 0.1rem;
 }
 
 .book-title {
@@ -176,10 +205,28 @@ a:hover { color: var(--link-hover); }
   color: #fff;
 }
 
-.series-link {
+.buy-link {
   font-family: system-ui, sans-serif;
   font-size: 0.8rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--link);
+  text-decoration: none;
+  background: var(--card-bg);
+}
+
+.buy-link:hover {
+  background: var(--bg);
+  border-color: var(--accent);
+  color: var(--link-hover);
+}
+
+.edition-soon {
+  font-family: system-ui, sans-serif;
+  font-size: 0.78rem;
   color: var(--muted);
+  opacity: 0.6;
 }
 
 /* ── Footer ──────────────────────────────────────── */

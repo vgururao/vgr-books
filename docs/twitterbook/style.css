@@ -513,3 +513,18 @@ blockquote.quote-box .quote-text{ font-size: 0.95em; }
 .float-nav-toc .float-nav-chevron{
   font-size: 1.2rem;
 }
+
+/* === CATALOG BACK-LINK (books.venkateshrao.com) === */
+.book-nav .nav-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+.nav-link.nav-catalog {
+  font-size: 0.72em;
+  font-weight: normal;
+  opacity: 0.6;
+  letter-spacing: 0.02em;
+}
+.nav-link.nav-catalog:hover { opacity: 1; }
