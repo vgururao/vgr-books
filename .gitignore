@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+**/.DS_Store
+._*
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# Hosting config (generated)
+.netlify/
+.vercel/
