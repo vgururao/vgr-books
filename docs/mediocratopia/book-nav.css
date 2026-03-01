@@ -1,0 +1,166 @@
+/* book-nav.css — shared navigation component for online books
+   Sepia defaults match the vgr twitter book aesthetic.
+   Override --nav-* vars in :root to theme for a specific site.
+   ---------------------------------------------------------------- */
+
+:root {
+  --nav-bg:           #f5f0e8;
+  --nav-border:       #d9d0c4;
+  --nav-fg:           #5a4e42;
+  --nav-label:        #3a3330;
+  --nav-arrow:        #8a7e72;
+  --nav-hover:        #6b4c2a;
+  --nav-max-width:    800px;
+  --nav-outer-offset: 432px;
+}
+
+/* ── Inline book-nav bar ───────────────────────────────────────── */
+
+.book-nav {
+  max-width: var(--nav-max-width);
+  margin: 0.75rem auto;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--nav-border);
+  border-radius: 6px;
+  background: var(--nav-bg);
+}
+
+.book-nav .nav-left,
+.book-nav .nav-center,
+.book-nav .nav-right {
+  flex: 1;
+  min-width: 0;
+}
+.book-nav .nav-left   { text-align: left; }
+.book-nav .nav-center { text-align: center; }
+.book-nav .nav-right  { text-align: right; }
+
+.nav-link {
+  text-decoration: none;
+  color: var(--nav-fg);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+.nav-link .nav-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: var(--nav-label);
+}
+.nav-link .nav-arrow {
+  flex-shrink: 0;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--nav-arrow);
+}
+.nav-prev .nav-arrow { margin-right: 0.4em; }
+.nav-next .nav-arrow { margin-left:  0.4em; }
+
+.nav-link.nav-toc {
+  font-weight: 600;
+  color: var(--nav-fg);
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
+}
+
+/* Nav-center stacks catalog + toc links vertically */
+.book-nav .nav-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+/* Catalog back-link (books.venkateshrao.com) */
+.nav-link.nav-catalog {
+  font-size: 0.72em;
+  font-weight: normal;
+  opacity: 0.6;
+  letter-spacing: 0.02em;
+}
+.nav-link.nav-catalog:hover { opacity: 1; }
+.nav-link:hover                { text-decoration: underline; color: var(--nav-hover); }
+.nav-link:hover .nav-label     { color: var(--nav-hover); }
+.nav-link:hover .nav-arrow     { color: var(--nav-hover); }
+.nav-link.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ── Floating side navigation ─────────────────────────────────── */
+
+.float-nav,
+.float-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3.2rem;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--nav-fg);
+  background: var(--nav-bg);
+  border: 1px solid var(--nav-border);
+  border-radius: 6px;
+  opacity: 0.65;
+  transition: opacity 0.2s, color 0.15s, box-shadow 0.15s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+.float-nav:hover,
+.float-nav-btn:hover {
+  opacity: 1;
+  color: var(--nav-hover);
+  box-shadow: 0 1px 6px rgba(60,40,20,0.15);
+}
+.float-nav-chevron {
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 300;
+}
+.float-nav-label {
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-top: 0.1rem;
+}
+
+/* Prev button: fixed left, vertically centered */
+.float-nav-prev {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(50% + var(--nav-outer-offset) + 0.5rem);
+}
+
+/* Right cluster: ToC stacked above Next */
+.float-nav-right {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc(50% + var(--nav-outer-offset) + 0.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.float-nav-toc { height: 2.6rem; }
+.float-nav-toc .float-nav-chevron { font-size: 1.2rem; }
+
+/* Hide float nav on screens where they'd overlap content */
+@media (max-width: 900px) {
+  .float-nav-prev,
+  .float-nav-right { display: none; }
+}

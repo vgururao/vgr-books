@@ -36,6 +36,12 @@ BOOKS = {
         "description": "Breaking Smart: How Software is Eating the World",
         "url": "/breakingsmart/index.html",
     },
+    "mediocratopia": {
+        "source": PUBLISHING / "Ribbonfarm Archives" / "Mediocratopia" / "docs",
+        "exclude": [],
+        "description": "Mediocratopia",
+        "url": "/mediocratopia/index.html",
+    },
 }
 
 
