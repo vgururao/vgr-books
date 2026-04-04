@@ -371,7 +371,7 @@
         "ebook": {
           "stage": "published",
           "isbn": null,
-          "buy_link": "http://amzn.to/2Hz3lRO",
+          "buy_link": "https://amzn.to/2Hz3lRO",
           "display": true
         },
         "print": null
@@ -417,7 +417,7 @@
         "ebook": {
           "stage": "published",
           "isbn": null,
-          "buy_link": "http://amzn.to/2sEt0VH",
+          "buy_link": "https://amzn.to/2sEt0VH",
           "display": true
         },
         "print": null
@@ -446,7 +446,7 @@
           "stage": "published",
           "isbn": null,
           "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
-          "buy_link": "http://amzn.to/2glIOTE",
+          "buy_link": "https://amzn.to/2glIOTE",
           "display": true
         },
         "print": null
@@ -479,7 +479,7 @@
           "stage": "published",
           "isbn": null,
           "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
-          "buy_link": "http://amzn.to/2iL40XE",
+          "buy_link": "https://amzn.to/2iL40XE",
           "display": true
         },
         "print": null
@@ -512,7 +512,7 @@
           "stage": "published",
           "isbn": null,
           "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
-          "buy_link": "http://amzn.to/2iKMTW4",
+          "buy_link": "https://amzn.to/2iKMTW4",
           "display": true
         },
         "print": null
@@ -545,7 +545,7 @@
           "stage": "published",
           "isbn": null,
           "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
-          "buy_link": "http://amzn.to/2gslAPy",
+          "buy_link": "https://amzn.to/2gslAPy",
           "display": true
         },
         "print": null
@@ -578,7 +578,7 @@
           "stage": "published",
           "isbn": null,
           "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
-          "buy_link": "http://amzn.to/2FigEVI",
+          "buy_link": "https://amzn.to/2FigEVI",
           "display": true
         },
         "print": null
@@ -616,11 +616,11 @@
           "editions": {
             "print": {
               "isbn": "978-0-9827030-0-7",
-              "buy_link": "http://www.amazon.com/gp/product/0982703007"
+              "buy_link": "https://www.amazon.com/gp/product/0982703007"
             },
             "ebook_kindle": {
               "isbn": "978-0-9827030-1-4",
-              "buy_link": "http://www.amazon.com/gp/product/B0069CHSLW"
+              "buy_link": "https://www.amazon.com/gp/product/B0069CHSLW"
             },
             "ebook_epub": {
               "isbn": "978-0-9827030-2-1",
@@ -637,14 +637,14 @@
           "stage": "production",
           "isbn": null,
           "isbn_note": "Will use next available from active block (978-1-959228). Assign when entering production.",
-          "buy_link": "http://www.amazon.com/gp/product/B0069CHSLW",
+          "buy_link": "https://www.amazon.com/gp/product/B0069CHSLW",
           "display": true
         },
         "print": {
           "stage": "production",
           "isbn": null,
           "isbn_note": "Will use next available from active block (978-1-959228). Assign when entering production.",
-          "buy_link": "http://www.amazon.com/gp/product/0982703007",
+          "buy_link": "https://www.amazon.com/gp/product/0982703007",
           "display": true
         }
       },
