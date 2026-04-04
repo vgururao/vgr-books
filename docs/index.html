@@ -28,7 +28,7 @@
 </header>
 <div class="main-wrapper">
 <section class="featured-section" id="featured-section">
-  <div class="featured-tag">Featured</div>
+  <div class="featured-tag">Featured Book</div>
   <div class="featured-book" id="featured-book">
     <div class="featured-cover-wrap"><div class="featured-cover-placeholder"></div></div>
     <div class="featured-info"><p class="book-detail-desc" style="color:var(--muted)">Loading&hellip;</p></div>
@@ -62,15 +62,18 @@ function __pickFeatured(tag) {
 __pickFeatured('all');
 </script>
 
-<div class="filter-bar">
-  <label for="tag-filter">Filter</label>
-  <select class="filter-select" id="tag-filter">
-    <option value="all">All books</option>
+<div class="catalog-header">
+  <h2 class="catalog-title">Catalog</h2>
+  <div class="filter-bar">
+    <label for="tag-filter">Filter</label>
+    <select class="filter-select" id="tag-filter">
+      <option value="all">All books</option>
     <option value="ribbonfarm">Ribbonfarm</option>
     <option value="art-of-gig">Art of Gig</option>
     <option value="rust-age">Rust Age</option>
     <option value="configurancy">Configurancy</option>
-  </select>
+    </select>
+  </div>
 </div>
 <script>
 (function() {

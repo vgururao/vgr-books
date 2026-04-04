@@ -495,7 +495,7 @@ def render_featured_js(visible: list, thumbs: dict) -> str:
 
     return f"""\
 <section class="featured-section" id="featured-section">
-  <div class="featured-tag">Featured</div>
+  <div class="featured-tag">Featured Book</div>
   <div class="featured-book" id="featured-book">
     <div class="featured-cover-wrap"><div class="featured-cover-placeholder"></div></div>
     <div class="featured-info"><p class="book-detail-desc" style="color:var(--muted)">Loading&hellip;</p></div>
@@ -544,11 +544,14 @@ def render_filter_bar(available_tags: list) -> str:
         options.append(f'<option value="{tag}">{label}</option>')
     options_html = "\n    ".join(options)
     return f"""\
-<div class="filter-bar">
-  <label for="tag-filter">Filter</label>
-  <select class="filter-select" id="tag-filter">
-    {options_html}
-  </select>
+<div class="catalog-header">
+  <h2 class="catalog-title">Catalog</h2>
+  <div class="filter-bar">
+    <label for="tag-filter">Filter</label>
+    <select class="filter-select" id="tag-filter">
+      {options_html}
+    </select>
+  </div>
 </div>
 <script>
 (function() {{

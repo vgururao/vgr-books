@@ -127,17 +127,15 @@ a:hover { color: var(--link-hover); }
 .featured-section {
   margin-bottom: 2.5rem;
   padding: 1.5rem 1.75rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+  background: #f0ead8;
+  border: 1px solid #d4c9a8;
   border-radius: 3px;
 }
 
 .featured-tag {
-  font-family: system-ui, sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: bold;
   color: var(--accent);
   margin-bottom: 1rem;
 }
@@ -200,13 +198,31 @@ a:hover { color: var(--link-hover); }
   margin-bottom: 2.5rem;
 }
 
+/* ── Catalog header ──────────────────────────────── */
+
+.catalog-header {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.catalog-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: var(--text);
+  white-space: nowrap;
+}
+
 /* ── Filter bar ──────────────────────────────────── */
 
 .filter-bar {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  margin-bottom: 2rem;
 }
 
 .filter-bar label {
