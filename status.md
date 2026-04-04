@@ -2,14 +2,14 @@
 
 ## Project
 - **Title:** VGR Books
-- **Source:** books.venkateshrao.com (unified catalog, hosting TBD)
+- **Source:** books.venkateshrao.com (unified catalog, GitHub Pages)
 - **Type:** Aggregated static site — all online books in one place
-- **Status:** in-progress
+- **Status:** live
 
 ## Outputs
 | Format | Status | Notes |
 |--------|--------|-------|
-| Site   | in-progress | 4 books synced; hosting not yet configured; domain not yet pointed |
+| Site   | live | books.venkateshrao.com; 15 book cards; GitHub Pages; Namecheap CNAME |
 | Ebook  | n/a | Individual books tracked separately |
 | Print  | n/a | Individual books tracked separately |
 
@@ -29,6 +29,18 @@ After each work session, update this file:
 4. Add dated session notes at the bottom
 
 ## Session Notes
+
+### 2026-04-03
+- Deployed to GitHub Pages at books.venkateshrao.com (CNAME via Namecheap, repo vgururao/vgr-books)
+- Major catalog redesign: 5-column compact grid, featured book (random JS pick), flat rows (no series section headers)
+- URL structure established: /{slug}/ = detail page, /{slug}/read/ = reading experience, /series/{slug}/ = series page
+- "More in this series" section on individual book detail pages (replaces series section headers)
+- CATALOG_SECTIONS list in build_catalog.py for explicit catalog ordering
+- Series pages generated at /series/{slug}/
+- Thumbnail pipeline: PIL resize to 400px wide; inbox/ drop zone; fixed 6 thumbnail paths after read/ migration
+- Masthead redesign: beige background, left-justified, back link above h1 with separator line
+- Cover thumbnails added for: Be Slightly Evil, Gervais Principle, Configurancy Tempo (resized from inbox)
+- Created ARCHITECTURE.md — reference guide for other projects on how to link, embed, find thumbnails/blurbs
 
 ### 2026-04-02
 - Major architecture refactor: renamed project online-books → vgr-books (master production registry)

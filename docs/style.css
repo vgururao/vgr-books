@@ -4,17 +4,14 @@
 */
 
 :root {
-  --bg:          #f8f4ec;
+  --bg:          #fcf9f4;
   --card-bg:     #ffffff;
-  --text:        #2c2010;
+  --text:        #1c1408;
   --muted:       #7a6a52;
   --accent:      #5c3a10;
   --link:        #5c3a10;
   --link-hover:  #3a2008;
   --border:      #e0d5c0;
-  --header-bg:   #2c2010;
-  --header-fg:   #f0e8d8;
-  --header-sub:  #c8b898;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,34 +32,50 @@ a:hover { color: var(--link-hover); }
 /* ── Header ─────────────────────────────────────── */
 
 .site-header {
-  background: var(--header-bg);
-  color: var(--header-fg);
-  padding: 2rem 1.5rem;
-  text-align: center;
+  background: #fcf9f4;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header-inner {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 1.25rem;
 }
 
 .site-header h1 {
-  font-size: 2rem;
-  letter-spacing: 0.04em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.6rem;
   font-weight: normal;
-  color: var(--header-fg);
+  letter-spacing: 0.03em;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
 }
 
-.site-header .byline {
-  margin-top: 0.4rem;
-  font-size: 1rem;
-  color: var(--header-sub);
-}
-
-.site-header .byline a {
-  color: var(--header-sub);
+.site-title-link {
+  color: #1c1408;
   text-decoration: none;
-  border-bottom: 1px solid #8a7458;
 }
 
-.site-header .byline a:hover {
-  color: var(--header-fg);
-  border-color: var(--header-fg);
+.site-title-link:hover {
+  color: var(--accent);
+}
+
+/* ── Back link ───────────────────────────────────── */
+
+.back-link-bar {
+  padding: 0.75rem 0 1.75rem;
+}
+
+.back-link {
+  font-family: system-ui, sans-serif;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 /* ── Main ────────────────────────────────────────── */
@@ -109,12 +122,90 @@ a:hover { color: var(--link-hover); }
   margin-top: 1rem;
 }
 
+/* ── Featured Book ───────────────────────────────── */
+
+.featured-section {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.featured-tag {
+  font-family: system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.featured-book {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.featured-cover-wrap {
+  display: block;
+  line-height: 0;
+}
+
+.featured-cover-placeholder {
+  width: 200px;
+  aspect-ratio: 2/3;
+  background: var(--border);
+}
+
+.featured-cover {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+.featured-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.featured-title {
+  font-size: 1.35rem;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.featured-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.featured-title a:hover {
+  color: var(--accent);
+}
+
+.featured-desc {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ── Catalog sections ────────────────────────────── */
+
+.book-section {
+  margin-bottom: 2.5rem;
+}
+
 /* ── Book Grid ───────────────────────────────────── */
 
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
 }
 
 .book-card {
@@ -128,37 +219,37 @@ a:hover { color: var(--link-hover); }
 
 .book-cover-link {
   display: block;
+  aspect-ratio: 2/3;
+  overflow: hidden;
   background: #e8e0d0;
   line-height: 0;
 }
 
 .book-cover {
   width: 100%;
+  height: 100%;
   display: block;
   object-fit: cover;
-  max-height: 260px;
   object-position: top;
 }
 
 .book-info {
-  padding: 1.25rem 1.25rem 1.5rem;
+  padding: 0.6rem 0.7rem 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  flex: 1;
+  gap: 0.35rem;
 }
 
 .book-series-label {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
   font-family: system-ui, sans-serif;
-  margin-bottom: 0.1rem;
 }
 
 .book-title {
-  font-size: 1.15rem;
+  font-size: 0.88rem;
   font-weight: bold;
   line-height: 1.3;
 }
@@ -174,30 +265,30 @@ a:hover { color: var(--link-hover); }
 }
 
 .book-desc {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--muted);
-  line-height: 1.55;
-  flex: 1;
+  line-height: 1.5;
 }
 
 .book-links {
   display: flex;
-  gap: 1rem;
+  gap: 0.4rem;
   align-items: center;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   flex-wrap: wrap;
 }
 
 .read-link {
   font-family: system-ui, sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  padding: 0.35rem 0.85rem;
+  padding: 0.25rem 0.6rem;
   background: var(--accent);
   color: #fff;
   text-decoration: none;
   border-radius: 2px;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .read-link:hover {
@@ -207,13 +298,14 @@ a:hover { color: var(--link-hover); }
 
 .buy-link {
   font-family: system-ui, sans-serif;
-  font-size: 0.8rem;
-  padding: 0.25rem 0.6rem;
+  font-size: 0.68rem;
+  padding: 0.2rem 0.45rem;
   border: 1px solid var(--border);
   border-radius: 2px;
   color: var(--link);
   text-decoration: none;
   background: var(--card-bg);
+  white-space: nowrap;
 }
 
 .buy-link:hover {
@@ -224,7 +316,7 @@ a:hover { color: var(--link-hover); }
 
 .edition-soon {
   font-family: system-ui, sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   color: var(--muted);
   opacity: 0.6;
 }
@@ -329,6 +421,30 @@ a:hover { color: var(--link-hover); }
   margin-top: 0.25rem;
 }
 
+/* ── More in this series (detail page) ──────────── */
+
+.more-in-series {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.more-in-series-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.more-in-series-title {
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
 /* ── Series Intro (series home page) ─────────────── */
 
 .series-intro {
@@ -350,11 +466,17 @@ a:hover { color: var(--link-hover); }
 
 /* ── Mobile ──────────────────────────────────────── */
 
+@media (max-width: 900px) {
+  .book-grid { grid-template-columns: repeat(4, 1fr); }
+  .featured-book { grid-template-columns: 160px 1fr; }
+}
+
 @media (max-width: 640px) {
-  .site-header h1 { font-size: 1.5rem; }
-  .book-grid { grid-template-columns: 1fr; }
-  .book-cover { max-height: 220px; }
+  .site-header h1 { font-size: 1.3rem; }
+  .book-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
   .book-detail { grid-template-columns: 1fr; gap: 1.5rem; }
   .book-detail-cover img { max-width: 200px; }
   .book-detail-title { font-size: 1.4rem; }
+  .featured-book { grid-template-columns: 110px 1fr; gap: 1rem; }
+  .featured-title { font-size: 1.1rem; }
 }

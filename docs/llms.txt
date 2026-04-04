@@ -1,0 +1,45 @@
+# Books by Venkatesh Rao
+
+> A catalog of books by Venkatesh Rao, with free online editions and buy links for print and ebook formats.
+
+Venkatesh Rao ([@vgr](https://venkateshrao.com)) is a writer, consultant, and blogger at [Ribbonfarm](https://www.ribbonfarm.com). He writes about strategy, technology, and the nature of modern life.
+
+## Docs
+
+- [Full Catalog](https://books.venkateshrao.com/): Browse all books with covers, descriptions, and links.
+
+## Online Books (free to read)
+
+- [The Yakverse Chronicles](https://books.venkateshrao.com/artofgig-vol3/): Thirteen absurdist consulting tales — yaks, gigsters, and capricious clients in increasingly surreal engagements.
+- [vgr: The Twitter Years (2007–22)](https://books.venkateshrao.com/twitterbook/): 102 chapters: a curated compendium of 396 singles plus 101 threads — the complete Twitter writings of Venkatesh Rao (@vgr).
+- [Breaking Smart: How Software is Eating the World](https://books.venkateshrao.com/breakingsmart/): 21 essays on the software revolution — how agile, networked approaches are disrupting industries and remaking society. In English, German, and French.
+- [Mediocratopia](https://books.venkateshrao.com/mediocratopia/): 13 essays on mediocrity as aspiration — optimization resistance, withheld reserves, and the courage to slouch toward a mediocracy utopia.
+
+## Buy Only
+
+- [Foundations](https://books.venkateshrao.com/artofgig-vol1/): Thirty-two essays on the basics of surviving and thriving as an independent: getting oriented, bootstrapping a practice, and managing the consulting psyche.
+- [Superstructures](https://books.venkateshrao.com/artofgig-vol2/): Thirty-four essays on the wider landscape of free agency: the history and future of the gig economy, creative frames for client work, and the long haul.
+- [The Gervais Principle](https://books.venkateshrao.com/gervais-principle/): The definitive Ribbonfarm series on organizational life through the lens of The Office — sociopaths, clueless middle management, and losers navigating institutional reality.
+- [Be Slightly Evil](https://books.venkateshrao.com/be-slightly-evil/): A Machiavellian guide to organizational life — essays on power, leverage, and strategic imperfection for those who live and work in institutions.
+- [The Art of Refactored Perception](https://books.venkateshrao.com/rust-age-vol1/): Collected Ribbonfarm essays on perception, cognition, and how we construct and reconstruct our mental models of the world.
+- [Towards an Appreciative View of Technology](https://books.venkateshrao.com/rust-age-vol2/): Collected Ribbonfarm essays on technology, progress, and the challenge of developing a mature, appreciative relationship with the tools we build.
+- [Getting Ahead, Getting Along, Getting Away](https://books.venkateshrao.com/rust-age-vol3/): Collected Ribbonfarm essays on social dynamics, organizational life, and the art of navigating institutions and relationships.
+- [The Mysteries of Money](https://books.venkateshrao.com/rust-age-vol4/): Collected Ribbonfarm essays on economics, money, and the hidden logics that govern financial and social exchange.
+- [Crash Early, Crash Often](https://books.venkateshrao.com/crash-early-crash-often/): Collected Ribbonfarm essays on failure, resilience, and the counterintuitive wisdom of embracing setbacks as a navigational tool.
+- [Tempo](https://books.venkateshrao.com/configurancy-tempo/): The original 2011 book on decision-making under time pressure, reissued as the prequel to the Configurancy series.
+- [Breaking Smart Newsletter (2015–2019)](https://books.venkateshrao.com/breaking-smart-newsletter/): Newsletter archives from the Breaking Smart era — essays on software eating the world, collected from the active newsletter years.
+
+## Series
+
+- [Art of Gig](https://books.venkateshrao.com/series/art-of-gig/): A three-volume series on the independent consulting life. — 3 volumes.
+- [Rust Age](https://books.venkateshrao.com/series/rust-age/): Four volumes of collected Ribbonfarm essays, originally published 2012–2013. — 4 volumes.
+
+## Optional
+
+- Indexicality: Nine chapters on how we anchor ourselves in time without clocks, drawn from the Contraptions serialization.
+- Divergence: On temporal divergence — how timelines branch, histories fork, and alternative presents accumulate.
+- Liveness: On liveness — the phenomenology of the present tense and what it means to be in the live moment.
+- The Great Weirding: Essays on the chaotic transformation of the 2016–2020 era — the historical, cultural, and political weirdness that defines our present.
+- On Lore: Essays on lore, world-building, and the informal knowledge systems that hold communities together.
+- Mediocre Computing: Essays on computing as a creative and intellectual practice for the rest of us — below the frontier, above the mundane.
+- Guerrilla Guide to Enterprise 2.0: From the defunct Enterprise 2.0 blog — a practitioner's guide to social software in organizations.
