@@ -200,6 +200,41 @@ a:hover { color: var(--link-hover); }
   margin-bottom: 2.5rem;
 }
 
+/* ── Filter bar ──────────────────────────────────── */
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+}
+
+.filter-bar label {
+  font-family: system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.filter-select {
+  font-family: system-ui, sans-serif;
+  font-size: 0.83rem;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.28rem 0.55rem;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
 /* ── Book Grid ───────────────────────────────────── */
 
 .book-grid {

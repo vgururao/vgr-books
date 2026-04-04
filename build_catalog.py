@@ -50,6 +50,21 @@ CATALOG_SECTIONS = [
 
 SERIES_PAGE_MIN_VOLUMES = 2
 
+# Books tagged "ribbonfarm" regardless of series
+RIBBONFARM_IDS = {
+    "rust-age-vol1", "rust-age-vol2", "rust-age-vol3", "rust-age-vol4",
+    "gervais-principle", "crash-early-crash-often",
+}
+
+# Ordered tag list for the filter dropdown (only shown if books exist for that tag)
+TAG_ORDER = ["ribbonfarm", "art-of-gig", "rust-age", "configurancy"]
+TAG_LABELS = {
+    "ribbonfarm":   "Ribbonfarm",
+    "art-of-gig":   "Art of Gig",
+    "rust-age":     "Rust Age",
+    "configurancy": "Configurancy",
+}
+
 
 def slugify(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
@@ -84,6 +99,16 @@ def load_blurbs() -> dict:
                 current_lines.append(stripped)
     _flush()
     return blurbs
+
+
+def get_tags(book: dict) -> list:
+    """Return list of tag slugs for a book (series tag + explicit collection tags)."""
+    tags = []
+    if book.get("series"):
+        tags.append(slugify(book["series"]))
+    if book["id"] in RIBBONFARM_IDS:
+        tags.append("ribbonfarm")
+    return tags
 
 
 def _esc(s: str) -> str:
@@ -293,8 +318,9 @@ def render_card(book: dict, thumbnail_rel: str, detail_url: str, root_url: str =
         + "</div>"
     )
 
+    tags_attr = " ".join(get_tags(book))
     return f"""\
-      <article class="book-card">
+      <article class="book-card" data-tags="{tags_attr}">
         {cover_html}
         <div class="book-info">
           {series_label_html}
@@ -459,6 +485,7 @@ def render_featured_js(visible: list, thumbs: dict) -> str:
             "blurb": book.get("blurb") or "",
             "detail": f"{slug}/",
             "thumb": thumbs[book["id"]],
+            "tags": get_tags(book),
             "read": f"{slug}/read/{entry}" if slug_read else None,
             "buyPrint": buy_print,
             "buyEbook": buy_ebook,
@@ -475,9 +502,8 @@ def render_featured_js(visible: list, thumbs: dict) -> str:
   </div>
 </section>
 <script>
-(function() {{
-  var books = {books_json};
-  var b = books[Math.floor(Math.random() * books.length)];
+var __catalogBooks = {books_json};
+function __renderFeatured(b) {{
   var links = '';
   if (b.read)     links += '<a class="read-link" href="' + b.read + '">Read online &rarr;</a>';
   if (b.buyPrint) links += '<a class="buy-link" href="' + b.buyPrint + '">Buy Print</a>';
@@ -493,6 +519,58 @@ def render_featured_js(visible: list, thumbs: dict) -> str:
       '<p class="featured-desc">' + b.blurb + '</p>' +
       '<div class="book-links">' + links + '</div>' +
     '</div>';
+}}
+function __pickFeatured(tag) {{
+  var pool = (tag === 'all') ? __catalogBooks :
+    __catalogBooks.filter(function(b) {{ return b.tags && b.tags.indexOf(tag) !== -1; }});
+  if (!pool.length) return;
+  __renderFeatured(pool[Math.floor(Math.random() * pool.length)]);
+}}
+__pickFeatured('all');
+</script>"""
+
+
+# ---------------------------------------------------------------------------
+# Filter bar (catalog page only)
+# ---------------------------------------------------------------------------
+
+def render_filter_bar(available_tags: list) -> str:
+    """Render the tag filter dropdown + JS. available_tags is a list of tag slugs."""
+    if not available_tags:
+        return ""
+    options = ['<option value="all">All books</option>']
+    for tag in available_tags:
+        label = TAG_LABELS.get(tag, tag.replace("-", " ").title())
+        options.append(f'<option value="{tag}">{label}</option>')
+    options_html = "\n    ".join(options)
+    return f"""\
+<div class="filter-bar">
+  <label for="tag-filter">Filter</label>
+  <select class="filter-select" id="tag-filter">
+    {options_html}
+  </select>
+</div>
+<script>
+(function() {{
+  var sel = document.getElementById('tag-filter');
+  if (!sel) return;
+  sel.addEventListener('change', function() {{
+    var tag = this.value;
+    // Show/hide cards
+    document.querySelectorAll('.book-card').forEach(function(c) {{
+      var tags = (c.dataset.tags || '').split(' ').filter(Boolean);
+      c.style.display = (tag === 'all' || tags.indexOf(tag) !== -1) ? '' : 'none';
+    }});
+    // Show/hide empty sections
+    document.querySelectorAll('.book-section').forEach(function(s) {{
+      var anyVisible = Array.from(s.querySelectorAll('.book-card')).some(function(c) {{
+        return c.style.display !== 'none';
+      }});
+      s.style.display = anyVisible ? '' : 'none';
+    }});
+    // Update featured book
+    if (typeof __pickFeatured === 'function') __pickFeatured(tag);
+  }});
 }})();
 </script>"""
 
@@ -726,7 +804,15 @@ def build(dry_run: bool = False) -> str:
     featured_html = render_featured_js(visible, thumbs)
     catalog_body = render_catalog_body(groups, thumbs)
 
-    full_body = featured_html + "\n\n" + catalog_body
+    # Compute available tags (only tags that have at least one visible book)
+    tag_counts: dict = {}
+    for book in visible:
+        for tag in get_tags(book):
+            tag_counts[tag] = tag_counts.get(tag, 0) + 1
+    available_tags = [t for t in TAG_ORDER if t in tag_counts]
+    filter_bar_html = render_filter_bar(available_tags)
+
+    full_body = featured_html + "\n\n" + filter_bar_html + "\n\n" + catalog_body
 
     catalog_html = page_html(
         title="Books by Venkatesh Rao",
