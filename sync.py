@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Sync book content from source projects into online-books/docs/<slug>/.
+"""Sync book content from source projects into vgr-books/docs/<slug>/read/.
+
+The top-level docs/<slug>/ directory is reserved for the generated detail page
+(index.html). Reading content lives in docs/<slug>/read/.
 
 Usage:
     python3 sync.py                           # sync all books
@@ -22,32 +25,32 @@ BOOKS = {
         "source": PUBLISHING / "artofgig" / "docs",
         "exclude": ["CNAME"],  # artofgig.com CNAME doesn't belong here
         "description": "Art of Gig Vol 3: The Yakverse Chronicles",
-        "url": "/artofgig-vol3/vol3_cover.html",
+        "url": "/artofgig-vol3/read/vol3_cover.html",
     },
     "twitterbook": {
         "source": PUBLISHING / "vgrtwitterbook" / "book",
         "exclude": [],
         "description": "vgr: The Twitter Years (2007–22)",
-        "url": "/twitterbook/index.html",
+        "url": "/twitterbook/read/index.html",
     },
     "breakingsmart": {
         "source": PUBLISHING / "BreakingSmart" / "docs",
         "exclude": ["CNAME"],
         "description": "Breaking Smart: How Software is Eating the World",
-        "url": "/breakingsmart/index.html",
+        "url": "/breakingsmart/read/index.html",
     },
     "mediocratopia": {
         "source": PUBLISHING / "Ribbonfarm Archives" / "Mediocratopia" / "docs",
         "exclude": [],
         "description": "Mediocratopia",
-        "url": "/mediocratopia/index.html",
+        "url": "/mediocratopia/read/index.html",
     },
 }
 
 
 def sync_book(slug, book_info):
     src = book_info["source"]
-    dst = DOCS / slug
+    dst = DOCS / slug / "read"
 
     if not src.exists():
         print(f"  ERROR: source not found: {src}")

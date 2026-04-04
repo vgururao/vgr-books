@@ -1,0 +1,870 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "description": "Master registry for all VGR books. Single source of truth for production tracking, catalog display, and transmittal. Replaces catalog_meta.json.",
+    "stages": ["option", "alpha", "beta", "production", "published"],
+    "stage_rules": {
+      "option": "Loose idea or possibility not yet committed to. Tracked here for awareness only. Hidden from public catalog.",
+      "alpha": "Materials and idea in source project. No formal production artifacts. Hidden from public catalog.",
+      "beta": "Working title assigned, ISBNs to be allocated, transmittal submitted to editor, continuous deploy set up for online editions. Hidden from public catalog unless edition.display is explicitly true.",
+      "production": "Manuscript with editor. Active production pipeline. ISBN assigned. Catalog card visible.",
+      "published": "Live. Buy links active. Bowker updated. Catalog card visible."
+    },
+    "edition_tracks": {
+      "online": "Continuous deploy via sync.py -> vgr-books. No ISBN. Separate from print/ebook pipeline.",
+      "ebook": "Via Vellum -> distributor. Requires ISBN. Transmittal form governs.",
+      "print": "Via Vellum -> distributor. Requires ISBN. Transmittal form governs."
+    },
+    "thumbnail_convention": {
+      "alpha": "thumbnail field is null. Resolves to docs/thumbnails/coming-soon.svg. Alpha books are not shown in the public catalog.",
+      "beta": "docs/thumbnails/{id}-beta.jpg (or .png/.svg) — working mockup or early cover draft. Place by hand when available.",
+      "production_no_slug": "docs/thumbnails/{id}.jpg (or .png) — final cover copied from source project collateral/.",
+      "production_with_slug": "Cover lives in docs/{slug}/ (e.g. cover.jpg, cover.png). Resolved automatically by build_catalog.py convention scan.",
+      "source_preference": "Use purpose-built thumb images from collateral/ (e.g. gpthumb.png, bsethumb.png) when available. Fall back to 75dpi or web-res variants of full cover. Never use 300dpi print-resolution files."
+    }
+  },
+
+  "global": {
+    "author": "Venkatesh Rao",
+    "publisher": "",
+    "in_house_editor": "",
+    "page_proof_reviewer": "Venkatesh Rao",
+    "transmittal_url": "https://jdbb-prod.exe.xyz/vgr/",
+    "isbn_blocks": [
+      {
+        "prefix": "978-1-959228",
+        "total": 100,
+        "status": "active",
+        "note": "New block. All future books use this block, assigned in order from lowest free.",
+        "next_available": "978-1-959228-06-6",
+        "assignments": [
+          {"isbn": "978-1-959228-00-4", "book_id": "artofgig-vol1", "format": "print",  "bowker_title": "The Art of Gig, Volume 1: Foundations"},
+          {"isbn": "978-1-959228-01-1", "book_id": "artofgig-vol2", "format": "print",  "bowker_title": "The Art of Gig, Volume 2: Superstructures"},
+          {"isbn": "978-1-959228-02-8", "book_id": "artofgig-vol1", "format": "ebook",  "bowker_title": "The Art of Gig, Volume 1: Foundations"},
+          {"isbn": "978-1-959228-03-5", "book_id": "artofgig-vol2", "format": "ebook",  "bowker_title": "The Art of Gig, Volume 2: Superstructures"},
+          {"isbn": "978-1-959228-04-2", "book_id": "twitterbook",   "format": "print",  "bowker_title": null},
+          {"isbn": "978-1-959228-05-9", "book_id": "twitterbook",   "format": "ebook",  "bowker_title": null}
+        ]
+      },
+      {
+        "prefix": "978-0-9827030",
+        "total": 10,
+        "status": "retired",
+        "note": "Legacy block. 5 assigned to older books, 5 unused. No new assignments from this block.",
+        "next_available": null,
+        "assignments": [
+          {"isbn": "978-0-9827030-0-7", "book_id": "configurancy-tempo", "format": "print",  "bowker_title": "Tempo: Timing, Tactics and Strategy in Narrative-Driven Decision Making"},
+          {"isbn": "978-0-9827030-1-4", "book_id": "configurancy-tempo", "format": "ebook",  "bowker_title": "Tempo: Timing, Tactics and Strategy in Narrative-Driven Decision Making (Kindle)"},
+          {"isbn": "978-0-9827030-2-1", "book_id": "configurancy-tempo", "format": "ebook2", "bowker_title": "Tempo: Timing, Tactics and Strategy in Narrative-Driven Decision Making (Epub)"},
+          {"isbn": "978-0-9827030-3-8", "book_id": "gervais-principle",  "format": "ebook",  "bowker_title": "The Gervais Principle: The Complete Series, with a Bonus Essay on Office Space"},
+          {"isbn": "978-0-9827030-4-5", "book_id": "be-slightly-evil",   "format": "ebook",  "bowker_title": "Be Slightly Evil: A Playbook for Sociopaths"}
+        ]
+      }
+    ]
+  },
+
+  "books": [
+
+    {
+      "id": "artofgig-vol1",
+      "title": "Foundations",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Art of Gig",
+      "series_volume": 1,
+      "series_desc": "A three-volume series on the independent consulting life.",
+      "label": "Vol. 1",
+      "blurb": "Thirty-two essays on the basics of surviving and thriving as an independent: getting oriented, bootstrapping a practice, and managing the consulting psyche.",
+      "thumbnail": "artofgig-vol3/ag1.jpeg",
+      "sort_order": 10,
+      "stage": "published",
+      "source_project": "../artofgig",
+      "status_md": "artofgig/status.md",
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": "978-1-959228-02-8",
+          "buy_link": "https://amzn.to/3OohvI7",
+          "display": true
+        },
+        "print": {
+          "stage": "published",
+          "isbn": "978-1-959228-00-4",
+          "buy_link": "https://amzn.to/3V7v00Z",
+          "display": true
+        }
+      },
+      "transmittal": {
+        "submitted": true,
+        "submitted_date": null,
+        "note": "Published before this system. Historical transmittal not tracked."
+      }
+    },
+
+    {
+      "id": "artofgig-vol2",
+      "title": "Superstructures",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Art of Gig",
+      "series_volume": 2,
+      "series_desc": "A three-volume series on the independent consulting life.",
+      "label": "Vol. 2",
+      "blurb": "Thirty-four essays on the wider landscape of free agency: the history and future of the gig economy, creative frames for client work, and the long haul.",
+      "thumbnail": "artofgig-vol3/ag2.jpeg",
+      "sort_order": 20,
+      "stage": "published",
+      "source_project": "../artofgig",
+      "status_md": "artofgig/status.md",
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": "978-1-959228-03-5",
+          "buy_link": "https://amzn.to/3ApHiK5",
+          "display": true
+        },
+        "print": {
+          "stage": "published",
+          "isbn": "978-1-959228-01-1",
+          "buy_link": "https://amzn.to/3EcCYz4",
+          "display": true
+        }
+      },
+      "transmittal": {
+        "submitted": true,
+        "submitted_date": null,
+        "note": "Published before this system. Historical transmittal not tracked."
+      }
+    },
+
+    {
+      "id": "artofgig-vol3",
+      "title": "The Yakverse Chronicles",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Art of Gig",
+      "series_volume": 3,
+      "series_desc": "A three-volume series on the independent consulting life.",
+      "label": "Vol. 3",
+      "blurb": "Thirteen absurdist consulting tales — yaks, gigsters, and capricious clients in increasingly surreal engagements.",
+      "thumbnail": "artofgig-vol3/images/yakverse-cover.png",
+      "sort_order": 30,
+      "stage": "beta",
+      "source_project": "../artofgig",
+      "status_md": "artofgig/status.md",
+      "editions": {
+        "online": {
+          "stage": "published",
+          "slug": "artofgig-vol3",
+          "entry_point": "vol3_cover.html",
+          "source_dir": "../artofgig/docs",
+          "display": true
+        },
+        "ebook": {
+          "stage": "beta",
+          "isbn": null,
+          "buy_link": null,
+          "display": false
+        },
+        "print": {
+          "stage": "beta",
+          "isbn": null,
+          "buy_link": null,
+          "display": false
+        }
+      },
+      "transmittal": {
+        "submitted": false,
+        "submitted_date": null,
+        "beta_fields": {
+          "title_status": "tentative",
+          "transmittal_date": null,
+          "isbn_paper": null,
+          "isbn_cloth": null,
+          "publisher": null,
+          "in_house_editor": null
+        },
+        "production_fields": null,
+        "design_fields": null
+      }
+    },
+
+    {
+      "id": "twitterbook",
+      "title": "vgr: The Twitter Years (2007\u201322)",
+      "working_title": "Tweetbook",
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "102 chapters: a curated compendium of 396 singles plus 101 threads \u2014 the complete Twitter writings of Venkatesh Rao (@vgr).",
+      "thumbnail": "twitterbook/assets/cover.png",
+      "sort_order": 40,
+      "stage": "beta",
+      "source_project": "../vgrtwitterbook",
+      "status_md": "vgrtwitterbook/status.md",
+      "editions": {
+        "online": {
+          "stage": "published",
+          "slug": "twitterbook",
+          "entry_point": "index.html",
+          "source_dir": "../vgrtwitterbook/book",
+          "display": true
+        },
+        "ebook": {
+          "stage": "beta",
+          "isbn": "978-1-959228-05-9",
+          "buy_link": null,
+          "display": false
+        },
+        "print": {
+          "stage": "beta",
+          "isbn": "978-1-959228-04-2",
+          "buy_link": null,
+          "display": false
+        }
+      },
+      "transmittal": {
+        "submitted": false,
+        "submitted_date": null,
+        "beta_fields": {
+          "title_status": "tentative",
+          "transmittal_date": null,
+          "isbn_paper": "978-1-959228-04-2",
+          "isbn_cloth": null,
+          "publisher": null,
+          "in_house_editor": null
+        },
+        "production_fields": null,
+        "design_fields": null
+      }
+    },
+
+    {
+      "id": "breakingsmart",
+      "title": "Breaking Smart: How Software is Eating the World",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "21 essays on the software revolution \u2014 how agile, networked approaches are disrupting industries and remaking society. In English, German, and French.",
+      "thumbnail": "breakingsmart/images/cover.jpg",
+      "sort_order": 50,
+      "stage": "published",
+      "source_project": "../BreakingSmart",
+      "status_md": "BreakingSmart/status.md",
+      "editions": {
+        "online": {
+          "stage": "published",
+          "slug": "breakingsmart",
+          "entry_point": "index.html",
+          "source_dir": "../BreakingSmart/docs",
+          "display": true
+        },
+        "ebook": {
+          "stage": "published",
+          "isbn": null,
+          "buy_link": "https://amzn.to/4qYXqcX",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": {
+        "submitted": true,
+        "submitted_date": null,
+        "note": "Published before this system. Historical transmittal not tracked."
+      }
+    },
+
+    {
+      "id": "mediocratopia",
+      "title": "Mediocratopia",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "13 essays on mediocrity as aspiration \u2014 optimization resistance, withheld reserves, and the courage to slouch toward a mediocracy utopia.",
+      "thumbnail": "mediocratopia/cover.svg",
+      "sort_order": 60,
+      "stage": "beta",
+      "source_project": "../Ribbonfarm Archives/Mediocratopia",
+      "status_md": "Ribbonfarm Archives/Mediocratopia/status.md",
+      "editions": {
+        "online": {
+          "stage": "published",
+          "slug": "mediocratopia",
+          "entry_point": "index.html",
+          "source_dir": "../Ribbonfarm Archives/Mediocratopia/docs",
+          "display": true
+        },
+        "ebook": {
+          "stage": "beta",
+          "isbn": null,
+          "buy_link": null,
+          "display": false
+        },
+        "print": {
+          "stage": "beta",
+          "isbn": null,
+          "buy_link": null,
+          "display": false
+        }
+      },
+      "transmittal": {
+        "submitted": false,
+        "submitted_date": null,
+        "beta_fields": {
+          "title_status": "tentative",
+          "transmittal_date": null,
+          "isbn_paper": null,
+          "isbn_cloth": null,
+          "publisher": null,
+          "in_house_editor": null
+        },
+        "production_fields": null,
+        "design_fields": null
+      }
+    },
+
+    {
+      "id": "gervais-principle",
+      "title": "The Gervais Principle",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "The definitive Ribbonfarm series on organizational life through the lens of The Office \u2014 sociopaths, clueless middle management, and losers navigating institutional reality.",
+      "thumbnail": "thumbnails/gervais-principle.png",
+      "sort_order": 70,
+      "stage": "published",
+      "source_project": "../Ribbonfarm Archives/The Gervais Principle",
+      "status_md": "Ribbonfarm Archives/The Gervais Principle/status.md",
+
+      "legacy_editions": [
+        {
+          "edition_label": "First Edition",
+          "title": "The Gervais Principle: The Complete Series, with a Bonus Essay on Office Space",
+          "stage": "published",
+          "publisher": "Ribbonfarm Inc.",
+          "copyright_year": null,
+          "editions": {
+            "ebook": {
+              "isbn": "978-0-9827030-3-8",
+              "buy_link": null
+            }
+          },
+          "note": "Legacy ISBN block (978-0-9827030). Ebook only. No print edition."
+        }
+      ],
+
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": null,
+          "buy_link": "http://amzn.to/2Hz3lRO",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": null
+    },
+
+    {
+      "id": "be-slightly-evil",
+      "title": "Be Slightly Evil",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "A Machiavellian guide to organizational life \u2014 essays on power, leverage, and strategic imperfection for those who live and work in institutions.",
+      "thumbnail": "thumbnails/be-slightly-evil.png",
+      "sort_order": 80,
+      "stage": "published",
+      "source_project": "../Be Slightly Evil",
+      "status_md": "Be Slightly Evil/status.md",
+
+      "legacy_editions": [
+        {
+          "edition_label": "First Edition",
+          "title": "Be Slightly Evil: A Playbook for Sociopaths",
+          "stage": "published",
+          "publisher": "Ribbonfarm Inc.",
+          "copyright_year": null,
+          "editions": {
+            "ebook": {
+              "isbn": "978-0-9827030-4-5",
+              "buy_link": null
+            }
+          },
+          "note": "Legacy ISBN block (978-0-9827030). Ebook only. No print edition."
+        }
+      ],
+
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": null,
+          "buy_link": "http://amzn.to/2sEt0VH",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": null
+    },
+
+    {
+      "id": "rust-age-vol1",
+      "title": "The Art of Refactored Perception",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Rust Age",
+      "series_volume": 1,
+      "series_desc": "Four volumes of collected Ribbonfarm essays, originally published 2012–2013.",
+      "label": "Vol. 1",
+      "blurb": "Collected Ribbonfarm essays on perception, cognition, and how we construct and reconstruct our mental models of the world.",
+      "thumbnail": "thumbnails/rust-age-vol1.jpg",
+      "sort_order": 81,
+      "stage": "published",
+      "source_project": "../Ribbonfarm Archives/The Art of Refactored Perception",
+      "status_md": "Ribbonfarm Archives/The Art of Refactored Perception/status.md",
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": null,
+          "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
+          "buy_link": "http://amzn.to/2glIOTE",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": {
+        "submitted": true,
+        "submitted_date": null,
+        "note": "Published before this system. Legacy Kindle ebook."
+      }
+    },
+
+    {
+      "id": "rust-age-vol2",
+      "title": "Towards an Appreciative View of Technology",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Rust Age",
+      "series_volume": 2,
+      "series_desc": "Four volumes of collected Ribbonfarm essays, originally published 2012–2013.",
+      "label": "Vol. 2",
+      "blurb": "Collected Ribbonfarm essays on technology, progress, and the challenge of developing a mature, appreciative relationship with the tools we build.",
+      "thumbnail": "thumbnails/rust-age-vol2.jpg",
+      "sort_order": 82,
+      "stage": "published",
+      "source_project": "../Ribbonfarm Archives/Towards an Appreciative View of Technology",
+      "status_md": "Ribbonfarm Archives/Towards an Appreciative View of Technology/status.md",
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": null,
+          "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
+          "buy_link": "http://amzn.to/2iL40XE",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": {
+        "submitted": true,
+        "submitted_date": null,
+        "note": "Published before this system. Legacy Kindle ebook."
+      }
+    },
+
+    {
+      "id": "rust-age-vol3",
+      "title": "Getting Ahead, Getting Along, Getting Away",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Rust Age",
+      "series_volume": 3,
+      "series_desc": "Four volumes of collected Ribbonfarm essays, originally published 2012–2013.",
+      "label": "Vol. 3",
+      "blurb": "Collected Ribbonfarm essays on social dynamics, organizational life, and the art of navigating institutions and relationships.",
+      "thumbnail": "thumbnails/rust-age-vol3.jpg",
+      "sort_order": 83,
+      "stage": "published",
+      "source_project": "../Ribbonfarm Archives/Getting-Ahead-Getting-Along",
+      "status_md": "Ribbonfarm Archives/Getting-Ahead-Getting-Along/status.md",
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": null,
+          "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
+          "buy_link": "http://amzn.to/2iKMTW4",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": {
+        "submitted": true,
+        "submitted_date": null,
+        "note": "Published before this system. Legacy Kindle ebook."
+      }
+    },
+
+    {
+      "id": "rust-age-vol4",
+      "title": "The Mysteries of Money",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Rust Age",
+      "series_volume": 4,
+      "series_desc": "Four volumes of collected Ribbonfarm essays, originally published 2012–2013.",
+      "label": "Vol. 4",
+      "blurb": "Collected Ribbonfarm essays on economics, money, and the hidden logics that govern financial and social exchange.",
+      "thumbnail": "thumbnails/rust-age-vol4.jpg",
+      "sort_order": 84,
+      "stage": "published",
+      "source_project": "../Ribbonfarm Archives/The Mysteries of Money",
+      "status_md": "Ribbonfarm Archives/The Mysteries of Money/status.md",
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": null,
+          "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
+          "buy_link": "http://amzn.to/2gslAPy",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": {
+        "submitted": true,
+        "submitted_date": null,
+        "note": "Published before this system. Legacy Kindle ebook."
+      }
+    },
+
+    {
+      "id": "crash-early-crash-often",
+      "title": "Crash Early, Crash Often",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "Collected Ribbonfarm essays on failure, resilience, and the counterintuitive wisdom of embracing setbacks as a navigational tool.",
+      "thumbnail": "thumbnails/crash-early-crash-often.jpg",
+      "sort_order": 85,
+      "stage": "published",
+      "source_project": "../Ribbonfarm Archives/Crash Early, Crash Often",
+      "status_md": "Ribbonfarm Archives/Crash Early, Crash Often/status.md",
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "published",
+          "isbn": null,
+          "isbn_note": "Kindle ebook — KDP ASIN, no ISBN assigned.",
+          "buy_link": "http://amzn.to/2FigEVI",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": {
+        "submitted": true,
+        "submitted_date": null,
+        "note": "Published before this system. Legacy Kindle ebook. Standalone — not part of Rust Age series."
+      }
+    },
+
+    {
+      "id": "configurancy-tempo",
+      "title": "Tempo",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Configurancy",
+      "series_volume": 1,
+      "series_desc": "A four-volume series on the nature of time: tempo, indexicality, divergence, and liveness.",
+      "label": "Vol. 1",
+      "blurb": "The original 2011 book on decision-making under time pressure, reissued as the prequel to the Configurancy series.",
+      "thumbnail": "thumbnails/configurancy-tempo.jpg",
+      "sort_order": 90,
+      "stage": "production",
+      "source_project": "../Configurancy/Tempo",
+      "status_md": "Configurancy/status.md",
+
+      "legacy_editions": [
+        {
+          "edition_label": "First Edition (2011)",
+          "title": "Tempo: Timing, Tactics and Strategy in Narrative-Driven Decision Making",
+          "stage": "published",
+          "publisher": "Ribbonfarm Inc.",
+          "copyright_year": 2011,
+          "editions": {
+            "print": {
+              "isbn": "978-0-9827030-0-7",
+              "buy_link": "http://www.amazon.com/gp/product/0982703007"
+            },
+            "ebook_kindle": {
+              "isbn": "978-0-9827030-1-4",
+              "buy_link": "http://www.amazon.com/gp/product/B0069CHSLW"
+            },
+            "ebook_epub": {
+              "isbn": "978-0-9827030-2-1",
+              "buy_link": null
+            }
+          },
+          "note": "Legacy ISBN block (978-0-9827030). Published before this registry system. These ISBNs are retired and will not be reused."
+        }
+      ],
+
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "production",
+          "isbn": null,
+          "isbn_note": "Will use next available from active block (978-1-959228). Assign when entering production.",
+          "buy_link": "http://www.amazon.com/gp/product/B0069CHSLW",
+          "display": true
+        },
+        "print": {
+          "stage": "production",
+          "isbn": null,
+          "isbn_note": "Will use next available from active block (978-1-959228). Assign when entering production.",
+          "buy_link": "http://www.amazon.com/gp/product/0982703007",
+          "display": true
+        }
+      },
+      "transmittal": {
+        "submitted": false,
+        "submitted_date": null,
+        "beta_fields": {
+          "title_status": "tentative",
+          "transmittal_date": null,
+          "isbn_paper": null,
+          "isbn_cloth": null,
+          "publisher": null,
+          "in_house_editor": null
+        },
+        "production_fields": null,
+        "design_fields": null
+      }
+    },
+
+    {
+      "id": "configurancy-indexicality",
+      "title": "Indexicality",
+      "working_title": null,
+      "subtitle": "The Clockless Clock",
+      "series": "Configurancy",
+      "series_volume": 2,
+      "series_desc": "A four-volume series on the nature of time: tempo, indexicality, divergence, and liveness.",
+      "label": "Vol. 2",
+      "blurb": "Nine chapters on how we anchor ourselves in time without clocks, drawn from the Contraptions serialization.",
+      "thumbnail": null,
+      "sort_order": 100,
+      "stage": "alpha",
+      "source_project": "../Configurancy/Indexicality",
+      "status_md": "Configurancy/status.md",
+      "editions": {
+        "online": null,
+        "ebook": null,
+        "print": null
+      },
+      "transmittal": null
+    },
+
+    {
+      "id": "configurancy-divergence",
+      "title": "Divergence",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Configurancy",
+      "series_volume": 3,
+      "series_desc": "A four-volume series on the nature of time: tempo, indexicality, divergence, and liveness.",
+      "label": "Vol. 3",
+      "blurb": "On temporal divergence \u2014 how timelines branch, histories fork, and alternative presents accumulate.",
+      "thumbnail": null,
+      "sort_order": 110,
+      "stage": "alpha",
+      "source_project": "../Configurancy/Divergence",
+      "status_md": "Configurancy/status.md",
+      "editions": {
+        "online": null,
+        "ebook": null,
+        "print": null
+      },
+      "transmittal": null
+    },
+
+    {
+      "id": "configurancy-liveness",
+      "title": "Liveness",
+      "working_title": null,
+      "subtitle": null,
+      "series": "Configurancy",
+      "series_volume": 4,
+      "series_desc": "A four-volume series on the nature of time: tempo, indexicality, divergence, and liveness.",
+      "label": "Vol. 4",
+      "blurb": "On liveness \u2014 the phenomenology of the present tense and what it means to be in the live moment.",
+      "thumbnail": null,
+      "sort_order": 120,
+      "stage": "alpha",
+      "source_project": "../Configurancy/Liveness",
+      "status_md": "Configurancy/status.md",
+      "editions": {
+        "online": null,
+        "ebook": null,
+        "print": null
+      },
+      "transmittal": null
+    },
+
+    {
+      "id": "great-weirding",
+      "title": "The Great Weirding",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "Essays on the chaotic transformation of the 2016\u20132020 era \u2014 the historical, cultural, and political weirdness that defines our present.",
+      "thumbnail": null,
+      "sort_order": 130,
+      "stage": "alpha",
+      "source_project": "../Contraptions/GreatWeirding",
+      "status_md": "Contraptions/GreatWeirding/status.md",
+      "editions": {
+        "online": null,
+        "ebook": null,
+        "print": null
+      },
+      "transmittal": null
+    },
+
+    {
+      "id": "on-lore",
+      "title": "On Lore",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "Essays on lore, world-building, and the informal knowledge systems that hold communities together.",
+      "thumbnail": null,
+      "sort_order": 140,
+      "stage": "alpha",
+      "source_project": "../Contraptions/OnLore",
+      "status_md": "Contraptions/OnLore/status.md",
+      "editions": {
+        "online": null,
+        "ebook": null,
+        "print": null
+      },
+      "transmittal": null
+    },
+
+    {
+      "id": "mediocre-computing",
+      "title": "Mediocre Computing",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "Essays on computing as a creative and intellectual practice for the rest of us \u2014 below the frontier, above the mundane.",
+      "thumbnail": null,
+      "sort_order": 150,
+      "stage": "alpha",
+      "source_project": "../Contraptions/MediocreComputing",
+      "status_md": "Contraptions/MediocreComputing/status.md",
+      "editions": {
+        "online": null,
+        "ebook": null,
+        "print": null
+      },
+      "transmittal": null
+    },
+
+    {
+      "id": "breaking-smart-newsletter",
+      "title": "Breaking Smart Newsletter (2015\u20132019)",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "Newsletter archives from the Breaking Smart era \u2014 essays on software eating the world, collected from the active newsletter years.",
+      "thumbnail": "thumbnails/breaking-smart-newsletter.jpg",
+      "sort_order": 160,
+      "stage": "beta",
+      "source_project": "../BreakingSmartNewsletterEbook",
+      "status_md": "BreakingSmartNewsletterEbook/status.md",
+      "editions": {
+        "online": null,
+        "ebook": {
+          "stage": "beta",
+          "isbn": null,
+          "buy_link": "https://amzn.to/3hu8psY",
+          "display": true
+        },
+        "print": null
+      },
+      "transmittal": {
+        "submitted": false,
+        "submitted_date": null,
+        "beta_fields": {
+          "title_status": "tentative",
+          "transmittal_date": null,
+          "isbn_paper": null,
+          "isbn_cloth": null,
+          "publisher": null,
+          "in_house_editor": null
+        },
+        "production_fields": null,
+        "design_fields": null
+      }
+    },
+
+    {
+      "id": "guerrilla-guide",
+      "title": "Guerrilla Guide to Enterprise 2.0",
+      "working_title": null,
+      "subtitle": null,
+      "series": null,
+      "series_volume": null,
+      "series_desc": null,
+      "label": null,
+      "blurb": "From the defunct Enterprise 2.0 blog \u2014 a practitioner\u2019s guide to social software in organizations.",
+      "thumbnail": null,
+      "sort_order": 170,
+      "stage": "alpha",
+      "source_project": "../GuerillaGuide",
+      "status_md": "GuerillaGuide/status.md",
+      "editions": {
+        "online": null,
+        "ebook": null,
+        "print": null
+      },
+      "transmittal": null
+    }
+
+  ]
+}

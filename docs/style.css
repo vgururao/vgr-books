@@ -240,10 +240,121 @@ a:hover { color: var(--link-hover); }
   font-family: system-ui, sans-serif;
 }
 
+/* ── Header link ─────────────────────────────────── */
+
+.site-title-link {
+  color: var(--header-fg);
+  text-decoration: none;
+}
+
+.site-title-link:hover {
+  color: var(--header-fg);
+  opacity: 0.85;
+}
+
+/* ── Breadcrumb ──────────────────────────────────── */
+
+.breadcrumb {
+  font-family: system-ui, sans-serif;
+  font-size: 0.83rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ── Series view-all link (catalog) ──────────────── */
+
+.series-view-link {
+  font-family: system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent);
+  margin-left: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+.series-view-link:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* ── Book Detail Page ────────────────────────────── */
+
+.book-detail {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.book-detail-cover img {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+.book-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.book-detail-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.book-detail-desc {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 540px;
+}
+
+.series-back-link {
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+/* ── Series Intro (series home page) ─────────────── */
+
+.series-intro {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.series-intro-name {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.series-intro-desc {
+  font-size: 1rem;
+  color: var(--muted);
+}
+
 /* ── Mobile ──────────────────────────────────────── */
 
 @media (max-width: 640px) {
   .site-header h1 { font-size: 1.5rem; }
   .book-grid { grid-template-columns: 1fr; }
   .book-cover { max-height: 220px; }
+  .book-detail { grid-template-columns: 1fr; gap: 1.5rem; }
+  .book-detail-cover img { max-width: 200px; }
+  .book-detail-title { font-size: 1.4rem; }
 }

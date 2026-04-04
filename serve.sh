@@ -12,7 +12,7 @@ set -euo pipefail
 PORT="${1:-8080}"
 DOCS="$(cd "$(dirname "$0")/docs" && pwd)"
 
-echo "=== Online Books — local dev server ==="
+echo "=== VGR Books — local dev server ==="
 echo ""
 echo "Serving: $DOCS"
 echo "Open:    http://localhost:$PORT"
