@@ -30,6 +30,16 @@ After each work session, update this file:
 
 ## Session Notes
 
+### 2026-04-03 (session 2)
+- Tag filter dropdown: All / Ribbonfarm / Art of Gig / Rust Age / Configurancy
+- RIBBONFARM_IDS set: rust-age-vol1–4, gervais-principle, crash-early-crash-often
+- Filter hides cards + empty sections; repicks featured book from filtered pool
+- Featured section: warmer parchment bg, "Featured Book" label in Georgia bold
+- "Catalog" header + top border rule above filter bar
+- HTTPS cert provisioned and enforced for books.venkateshrao.com (Let's Encrypt, expires 2026-07-02)
+- Buy links audit: all 15 active links upgraded http → https; verified all resolve (200 OK)
+- CLAUDE.md, TODO.md, memory updated for session close
+
 ### 2026-04-03
 - Deployed to GitHub Pages at books.venkateshrao.com (CNAME via Namecheap, repo vgururao/vgr-books)
 - Major catalog redesign: 5-column compact grid, featured book (random JS pick), flat rows (no series section headers)

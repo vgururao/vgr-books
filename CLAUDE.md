@@ -56,10 +56,13 @@ The main index at `docs/index.html` is the library landing page. Each book's sub
 # 1. Sync all books from source projects (first time, or after source changes)
 python3 sync.py
 
-# 2. Regenerate the catalog index (after editing registry.json)
+# 2. Regenerate all HTML pages, sitemap, robots.txt, llms.txt
 python3 build_catalog.py
 
-# 3. Start local server
+# 3. Regenerate social card images (1200x630 PNGs) — run after adding/updating books
+python3 generate_social_cards.py
+
+# 4. Start local server
 bash serve.sh          # serves on http://localhost:8080
 bash serve.sh 9000     # or a custom port
 ```
@@ -291,21 +294,11 @@ Every book page includes `<a class="nav-link nav-catalog" href="https://books.ve
 
 ## Next Session Priorities
 
-### 1. Thumbnail workflow — new covers via inbox/
-- Drop any new cover image into `inbox/`
-- Resize to 400px wide with PIL (see thumbnail convention above), save to `docs/thumbnails/{id}.jpg`
-- Update `thumbnail` field in `registry.json`, run `python3 build_catalog.py`
+See `TODO.md` for the full prioritized list. Top items:
 
-### 2. Site metadata
-- `<title>`, `<meta description>`, OG tags live in `build_catalog.py`'s `page_html` template
-- Update when copy is finalized
-
-### 3. Nav bar connecting to related sites
-- Candidate links: venkateshrao.com, ribbonfarm.com, contraptions.venkateshrao.com, artofgig.com
-- Add to the `page_html` template in `build_catalog.py` so it appears on all generated pages
-
-### 4. Legacy site redirects
-- artofgig.com, venkateshrao.com/twitter-book/, breakingsmart.com → decide timing and mechanism
+1. **Better cover thumbnails** — drop into `inbox/`, resize with PIL, update `registry.json`, run `python3 build_catalog.py` + `python3 generate_social_cards.py`
+2. **Nav bar** — add strip linking to venkateshrao.com, ribbonfarm.com, etc. in `page_html` template
+3. **Legacy site redirects** — artofgig.com, venkateshrao.com/twitter-book/, breakingsmart.com WordPress shutdown
 
 ---
 
