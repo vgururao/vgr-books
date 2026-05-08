@@ -314,6 +314,25 @@ blockquote.quote-box .quote-text{ font-size: 0.95em; }
   margin: 1.5rem 0 0;
   line-height: 1.5;
 }
+.titlepage .archive-search-link{
+  font-size: 1.05rem;
+  margin: 1.5rem 0 0;
+  color: #4a4035;
+}
+.titlepage .archive-search-link a{
+  color: #7a5c3a;
+  text-decoration: none;
+}
+.titlepage .archive-search-link a:hover{
+  text-decoration: underline;
+  color: #5a3c1a;
+}
+.titlepage .archive-search-host{
+  display: block;
+  font-size: 0.8rem;
+  color: #9a8a7a;
+  margin-top: 0.25rem;
+}
 .titlepage .production-note{
   text-align: left;
   max-width: 32rem;

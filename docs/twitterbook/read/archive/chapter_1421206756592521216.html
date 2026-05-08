@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>vgr: The Twitter Years (2007–22) | Archive Thread</title>
+  <meta property="og:title" content="vgr: The Twitter Years (2007–22) | Archive Thread">
+  <meta property="og:description" content="Burning bridges problem: you&#x27;re going from A to B on a graph, cutting some edges as you go. Is there an algorithm that will approximate max-flow/min-cut set of cuts while getting to B in reasonable ti">
+  <meta property="og:image" content="https://books.venkateshrao.com/social/twitterbook.png">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://books.venkateshrao.com/twitterbook/read/archive/chapter_1421206756592521216.html">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mobile.css">
+  <link rel="stylesheet" href="archive.css">
+</head>
+<body class="archive-page">
+  <div class="page">
+    <nav class="book-nav archive-nav">
+  <div class="nav-left">
+    <a class="nav-link nav-back" href="javascript:history.back()">
+      <span class="nav-arrow">&larr;</span><span class="nav-label">Back to search</span>
+    </a>
+  </div>
+  <div class="nav-center">
+    <a class="nav-link nav-catalog" href="https://books.venkateshrao.com">All Books</a>
+    <a class="nav-link nav-toc" href="../toc.html">Curated Book</a>
+  </div>
+  <div class="nav-right"></div>
+</nav>
+    <div class="archive-banner">
+      <span class="archive-banner-label">Full Twitter Archive</span>
+      &mdash; This thread is not in the curated book.
+      <a href="../toc.html">Browse the curated edition &rarr;</a>
+    </div>
+    <div class="page-content">
+      <div class="chapter">
+        <div class="archive-thread-meta">July 30, 2021 &middot; 8 tweets</div>
+        <div class="archive-thread-preview">&ldquo;Burning bridges problem: you&#x27;re going from A to B on a graph, cutting some edges…&rdquo;</div>
+        <div class="tweets-container">
+<div class="tweet" id="t1421206756592521216">
+  <a class="tweet-permalink" href="#t1421206756592521216" title="Copy link to this tweet" onclick="return copyTweetLink(this, 't1421206756592521216')">&#x1F517;</a>
+  <div class="tweet-text">Burning bridges problem: you're going from A to B on a graph, cutting some edges as you go. Is there an algorithm that will approximate max-flow/min-cut set of cuts while getting to B in reasonable time? Solve for cost function that's a weighted sum of shortest path and min cuts.</div>
+</div>
+<div class="tweet" id="t1421207899347374083">
+  <a class="tweet-permalink" href="#t1421207899347374083" title="Copy link to this tweet" onclick="return copyTweetLink(this, 't1421207899347374083')">&#x1F517;</a>
+  <div class="tweet-text">You're allowed to wander, though of course not backtrack over edges you've already cut<br>
+<br>
+Trying to pose clearly the problem of destroying a graph by disconnecting it as you pass through it ("burn the fields and salt the earth" sort of thing)</div>
+</div>
+<div class="tweet" id="t1421208573384687622">
+  <a class="tweet-permalink" href="#t1421208573384687622" title="Copy link to this tweet" onclick="return copyTweetLink(this, 't1421208573384687622')">&#x1F517;</a>
+  <div class="tweet-text">Obviously, one extreme is to just traverse the whole graph (eulerian circuit) and solve the min-cut explicitly and then do the shortest path that allows you to cut them as you go from A to B in the final pass.</div>
+</div>
+<div class="tweet" id="t1421208714564931587">
+  <a class="tweet-permalink" href="#t1421208714564931587" title="Copy link to this tweet" onclick="return copyTweetLink(this, 't1421208714564931587')">&#x1F517;</a>
+  <div class="tweet-text">Another extreme is to solve shortest path, cut everything not on it, then cut shortest path as you finish. Both seem very inefficient.</div>
+</div>
+<div class="tweet" id="t1421217337592532993">
+  <a class="tweet-permalink" href="#t1421217337592532993" title="Copy link to this tweet" onclick="return copyTweetLink(this, 't1421217337592532993')">&#x1F517;</a>
+  <div class="tweet-text">More general version you have several pairs of points and must disconnect all pairs while traveling between one pair. <br>
+<br>
+Or… there are n coordinating travelers doing the burning, with or without constant communication.</div>
+</div>
+<div class="tweet" id="t1421218089442549761">
+  <a class="tweet-permalink" href="#t1421218089442549761" title="Copy link to this tweet" onclick="return copyTweetLink(this, 't1421218089442549761')">&#x1F517;</a>
+  <div class="tweet-text">The last one is a graph theory formulation of the maneuver warfare problem: collapse a force structure from within, preferably in radio silence… for more spatial realism assume the graph is a spatial maze (ie it’s on a plane and you have gps+ compass)</div>
+</div>
+<div class="tweet" id="t1421219308550512640">
+  <a class="tweet-permalink" href="#t1421219308550512640" title="Copy link to this tweet" onclick="return copyTweetLink(this, 't1421219308550512640')">&#x1F517;</a>
+  <div class="tweet-text">Forgot to explicitly state a crucial condition: you don’t know the graph upfront but must discover it by traversing it. Like SLAM (simultaneous localization and mapping) vs shortest path or D* vs A*.</div>
+</div>
+<div class="tweet" id="t1421219823778889732">
+  <a class="tweet-permalink" href="#t1421219823778889732" title="Copy link to this tweet" onclick="return copyTweetLink(this, 't1421219823778889732')">&#x1F517;</a>
+  <div class="tweet-text">The STAB problem: simultaneous traversal and burning.<br>
+<br>
+For a positive use case… traversing a forest and doing control burns as you go to disconnect it for wildfire resistance.</div>
+</div>
+        </div>
+      </div>
+    </div>
+    <nav class="book-nav archive-nav">
+  <div class="nav-left">
+    <a class="nav-link nav-back" href="javascript:history.back()">
+      <span class="nav-arrow">&larr;</span><span class="nav-label">Back to search</span>
+    </a>
+  </div>
+  <div class="nav-center">
+    <a class="nav-link nav-catalog" href="https://books.venkateshrao.com">All Books</a>
+    <a class="nav-link nav-toc" href="../toc.html">Curated Book</a>
+  </div>
+  <div class="nav-right"></div>
+</nav>
+    <script>
+function copyTweetLink(el, anchor) {
+  var url = window.location.origin + window.location.pathname + '#' + anchor;
+  navigator.clipboard.writeText(url).then(function() {
+    el.classList.add('copied');
+    setTimeout(function() { el.classList.remove('copied'); }, 1200);
+  });
+  return false;
+}
+(function() {
+  if (window.location.hash) {
+    var id = window.location.hash.substring(1);
+    var tweet = document.getElementById(id);
+    if (tweet) {
+      setTimeout(function() {
+        var y = tweet.getBoundingClientRect().top + window.pageYOffset - 100;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        tweet.classList.add('permalink-highlight');
+      }, 300);
+    }
+  }
+})();
+</script>
+  </div>
+</body>
+</html>

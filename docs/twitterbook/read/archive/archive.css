@@ -1,0 +1,72 @@
+/* Archive thread pages — visually distinguished from curated book chapters.
+   Scoped to body.archive-page to avoid leaking into book styles. */
+
+body.archive-page {
+  background: #e8edf2;  /* cooler, bluer than the book's warm #f5f0e8 */
+}
+
+body.archive-page .page {
+  background: #f0f4f8;
+  border-left: 3px solid #7a9ab5;
+  border-right: 3px solid #7a9ab5;
+}
+
+/* Banner */
+.archive-banner {
+  background: #2c4a6e;
+  color: #c8daea;
+  font-family: system-ui, sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  padding: 0.5em 1.5em;
+  text-align: center;
+}
+
+.archive-banner .archive-banner-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e8f2fa;
+}
+
+.archive-banner a {
+  color: #a8c8e4;
+  text-decoration: underline;
+  margin-left: 0.5em;
+}
+
+.archive-banner a:hover {
+  color: #e8f2fa;
+}
+
+/* Nav */
+body.archive-page .archive-nav {
+  border-bottom-color: #7a9ab5;
+}
+
+body.archive-page .nav-link {
+  color: #2c4a6e;
+}
+
+body.archive-page .nav-link:hover {
+  background: #d0dce8;
+  color: #1a2e44;
+}
+
+/* Thread meta header */
+.archive-thread-meta {
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: #5a7a99;
+  margin-bottom: 0.4em;
+  letter-spacing: 0.02em;
+}
+
+.archive-thread-preview {
+  font-style: italic;
+  color: #4a6a88;
+  font-size: 0.95rem;
+  margin-bottom: 1.5em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #b8ccd8;
+}
